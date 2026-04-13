@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b022cf7f71a5423584548130d448c9f, type: 3}
+  m_Name: LocEn
+  m_EditorClassIdentifier: 
+  language: 0
+  musicTitle: Music
+  soundTitle: Sounds
+  MarketPanelTitle: Buy {0} crystals
+  Get: Claim
+  GetFreeCoins: Get {0} free crystals
+  Market: Shop
+  Level: Level
+  Continue: Continue
+  Restart: Restart
+  Congrats:
+  - Awesome!
+  - Wow, well done!
+  - You did it!
+  - You're so good!
+  - Oh yeah!
+  - Out of this world!
+  - Mind. Blown!
+  - Wonderful!
+  - Fantabulous!
+  - What a legend!
+  - Not bad...
+  - You're crushing it!
+  - E. Musk is impressed!
+  - Excellent!
+  - Mind-blowing!!
+  - Freaking awesome!
+  - Purr-fect!
+  - Looking good!
+  - So cool!
+  YourReward: Your Reward
+  ExtraReward: 
+  ChestRewardTitle: 
+  LeaderboardTitle: Soul Keepers
+  LoginBtnTe: Log In
+  AuthInfo: Log in to see your rank on the Soul Keepers leaderboard.
+  LeaderboardInfoTitle: 
+  LeaderboardInfoStory: After merging, the little monsters leave behind a piece of
+    their magical soul. Become the ultimate master of the secret knowledge hidden
+    within their souls!
+  LeaderboardLoadError: Failed to load. Please try again later.
+  AuthFailedError: Login failed. Please try again later.
+  LeaderboardServiceNotAvailable: Leaderboard is unavailable.

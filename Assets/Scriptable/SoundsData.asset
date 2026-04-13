@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 297879b75f3f482bac71effe1188f4cc, type: 3}
+  m_Name: SoundsData
+  m_EditorClassIdentifier: 
+  mainBgMusic:
+    clip: {fileID: 8300000, guid: c4509f9f8c8c6504da7e32da374d52a6, type: 3}
+    volume: 0.18
+    loop: 1
+    Delay: 0
+    Pitch: 1
+  BumpSound:
+    clip: {fileID: 8300000, guid: 46a403163b6ecfd4092508786b995559, type: 3}
+    volume: 1
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  rocketSounds:
+  - clip: {fileID: 8300000, guid: 672a95022c1ff4847b336bd08178db92, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: 60ca988fd7398a54d816c7a11958b924, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: 37ba663f59592774bbfc9e2409f336be, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: d0bc1dae60370bc40862b5b65c6eb24f, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: d6d28d6e6707b9c40b49928dfd2e7929, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: 52ef86e0dce33f3449fd9b2531fb840b, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: 8d11b847b859a9747bf197b5afff6804, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: 1c85830f1c732604a982348bdf30f677, type: 3}
+    volume: 0.25
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: ca0d5d7cc2fa8a24aa2e287a152aff2a, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: 159eccc0c11fa3545baf03e668fefbfa, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: b1e81dc360734f047a4477142d96091a, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: e7d23b5dc9dd7684eae73d192840455a, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: 0012a694aa98e9a43917462ee657d772, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: eb5b11c765d220849a1f55d060a1404e, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  - clip: {fileID: 8300000, guid: 8be45dafc345a0244b1f5ba365cadb19, type: 3}
+    volume: 0.45
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  EnergyStartMoveSound:
+    clip: {fileID: 8300000, guid: d1cd5e82876a61545a37d3ab13c5e7b1, type: 3}
+    volume: 1
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  EnergyHitMoveSound:
+    clip: {fileID: 8300000, guid: 090f16d39d2d68441850b614991cb55c, type: 3}
+    volume: 1
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  EnergyFromUFO:
+    clip: {fileID: 8300000, guid: 32a085624b9f652458773be29e8fc6c1, type: 3}
+    volume: 1
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  WinSound:
+    clip: {fileID: 8300000, guid: 3830029b89ea7a04992156c6adbc327c, type: 3}
+    volume: 1
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  LoseSound:
+    clip: {fileID: 8300000, guid: a322d6385a0e3d94291c6a2636c08c22, type: 3}
+    volume: 1
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  DotsCollectSound:
+    clip: {fileID: 8300000, guid: 02ebc5dabe8e4ae45b1034a08e923a92, type: 3}
+    volume: 0.25
+    loop: 0
+    Delay: 0
+    Pitch: 1
+  DotsWaveSound:
+    clip: {fileID: 8300000, guid: 3d32a12ce6100b247946e5dd9ce86b4e, type: 3}
+    volume: 1
+    loop: 0
+    Delay: 0
+    Pitch: 1

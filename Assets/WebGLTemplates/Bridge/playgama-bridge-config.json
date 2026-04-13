@@ -1,0 +1,83 @@
+{
+  "platforms": {
+    "game_distribution": {
+      "gameId": ""
+    },
+    "telegram": {
+      "adsgramBlockId": ""
+    },
+    "y8": {
+      "gameId": "",
+      "adsenseId": "",
+      "channelId": ""
+    },
+    "lagged": {
+      "devId": "",
+      "publisherId": ""
+    },
+    "msn": {
+      "gameId": ""
+    },
+    "discord": {
+      "appId": ""
+    },
+    "gamepush": {
+      "projectId": "",
+      "publicToken": ""
+    }
+  },
+  "advertisement": {
+    "interstitial": {
+      "preloadOnStart": true
+    },
+    "rewarded": {
+      "preloadOnStart": true
+    },
+    "useBuiltInErrorPopup": true,
+    "backfillId": ""
+  },
+  "payments": [
+    {
+      "id": "gems_1",
+      "yandex": {
+        "id": "gems_1",
+        "title": "Кристалы",
+        "description": "100 кристалов",
+        "price": 99
+      },
+      "qa_tool": {
+        "id": "gems_1"
+      }
+    },
+    {
+      "id": "gems_2",
+      "yandex": {
+        "id": "gems_2",
+        "title": "Кристалы",
+        "description": "100 кристалов",
+        "price": 149
+      },
+      "qa_tool": {
+        "id": "gems_2"
+      }
+    },
+    {
+      "id": "gems_3",
+      "yandex": {
+        "id": "gems_3",
+        "title": "Кристалы",
+        "description": "200 кристалов",
+        "price": 199
+      },
+      "qa_tool": {
+        "id": "gems_3"
+      }
+    }
+  ],
+  "leaderboards": [
+    {
+      "id": "soul_hunter_base",
+      "yandex": "soulhunter"
+    }
+  ]
+}

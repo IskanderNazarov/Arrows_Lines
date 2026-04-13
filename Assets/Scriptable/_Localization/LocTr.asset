@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b022cf7f71a5423584548130d448c9f, type: 3}
+  m_Name: LocTr
+  m_EditorClassIdentifier: 
+  language: 2
+  score: "Puan"
+  yourScore: "Puanın"
+  highScore: "Yüksek Skor"
+  continueBtn: "Devam Et"
+  restartBtn: "Yeniden Başla"
+  continueTitle: "Canavarların yarısını kaldır ve oynamaya devam et"
+  startTitle: "Kaydedilmiş oyuna devam et"
+  startGameBtn:
+  - "Hadi gidelim!"
+  - "Başlayalım mı?"
+  - "Ne bekliyoruz? Hadi!"
+  - "Başlat!"
+  - "Hadi canavar avlayalım!"
+  - "Oyuna hazır mısın?"
+  - "Nektar kendini toplamaz!"
+  newBoxOpened: "Yeni bir canavar açıldı!"
+  youReachCheckpoint: "{0} puana ulaştın!\nDurmak yok!"
+  bonusScoreText: "{0} bonus puan kazan"
+  nextFlowerTitle: "Sıradaki\nCanavar"
+  newFlowerTitle: "Yeni Canavar!"
+  beeRemoveFlowerTitle: "Tarladan kaldırmak istediğin canavarı seç"
+  musicTitle: "Müzik"
+  soundTitle: "Sesler"
+  gameOverText: "<color=#D7F800>Canavar Bahçesi</color>'nde canavarları geliştir ve daha fazla puan ve bal parası kazan!"
+  hasChanceToContinue: "Oyuna devam etmek için bir şansın var:"
+  goodJobText: "Harika sonuç!"
+  MarketPanelTitle: "{0} kristal satın al"
+  Get: "Al"
+  GetFreeCoins: "Ücretsiz {0} kristal al"
+  Market: "Mağaza"
+  GotCoinsTitle: "{0} kristal kazandın"
+  YourReward: "Ödülün"
+  ExtraReward: 
+  ChestRewardTitle: 
+  LeaderboardTitle: "Ruh Bekçileri"
+  LoginBtnTe: "Giriş Yap"
+  AuthInfo: "Liderlik tablosunda kendini görmek için giriş yap"
+  LeaderboardInfoTitle: 
+  LeaderboardInfoStory: "Canavarlar birleştiğinde sihirli ruhlarından bir parça kaybederler. Canavarların ruhlarında saklı olan gizli bilgilerin baş sahibi ol."
+  LeaderboardLoadError: "Yükleme hatası. Lütfen daha sonra tekrar dene."
+  AuthFailedError: "Giriş yapılamadı. Lütfen daha sonra tekrar dene."
+  LeaderboardServiceNotAvailable: "Liderlik tablosu mevcut değil"
+  MonstersNames:
+  - "Boynuzlu Mandarin"
+  - "Şaşkın Misket Limonu"
+  - "Kurnaz Tüy-yumak"
+  - "Öfkeli Domates"
+  - "Melankolik Mor-göz"
+  - "Boynuzlu Üzgün"
+  - "Üç Renkli Güzellik"
+  - "Kanatlı Hiddet"
+  - "Vesveseli Tüy-yumak"
+  - "Sırıtan Portakal"
+  - "Somurtkan Tek-diş"
+  - "Zefir Sakin"
+  - "Huysuz Patlıcan"
+  - "Gökkuşağı Yorgun"
+  - "Hırçın Bombus"
+  - "Kömür İyi-kalp"
+  - "Hasta Pofuduk"
+  - "Turkuaz Düzenbaz"
+  - "Tek Gözlü Haylaz"
+  - "Varoluşçu Kaya"
+  - "Kendini Beğenmiş Şeftali"
+  - "Derin Depresyon"
+  - "Pozitif Dondurma"
+  - "Yağlı Kendine-aşık"
+  - "İki Yüzlü Kıkırdayan"
+  - "Panik Halindeki Vanilya"
+  - "Gıdıklanmış"
+  MonstersDescriptions:
+  - "Sürekli uyandırıldığı için kızgın. Boynuzlarının yeterince keskin olmadığından şüpheleniyor."
+  - "Odaya yeni girdi ve neden girdiğini unuttu. En sevdiği soru: 'Ha?'."
+  - "Bu sevimliliğe aldanmayın! Bu tüy yumağı az önce anahtarlarınızı sakladı ve sabah 4'te vazoyu devirmeyi planlıyor."
+  - "Ona yanlış baktığınız için kızgın. Sabahı, akşamı ve güzel havayı sevmez."
+  - "Aydınlanmayı buldu ve şimdi her şey onun için mor (tıpkı gözleri gibi)."
+  - "Kurabiyeleri bittiği için üzgün. Ya da bugün Salı olduğu için."
+  - "Sanki son şekerini sizinle paylaşmaya hazırmış gibi görünüyor. Boynuzlarından biraz utanıyor."
+  - "Kendini bir ejderha sanıyor ama kükremesi bir hamster ciyaklaması gibi. 'Tatlı meyve' denildiğinde çok sinirlenir."
+  - "Sürekli bir tenis topuyla karıştırılacağından endişe ediyor. Mottosu: 'Aman, o da neydi?!'."
+  - "Sanki komik bir fıkra biliyor ama anlatmaya utanıyormuş gibi gülümsüyor."
+  - "Görünüşe göre, tereyağlı ekmeğini az önce yere düşürdü. Tek dişi hem gururu hem de laneti."
+  - "Seni gördüğüne çok memnun. O kadar yumuşak ki kendi düşüncelerinden korkuyor."
+  - "Her şey onu rahatsız ediyor. Özellikle güneş. Ve o garip tepesi."
+  - "24/7 parlak olmaktan yoruldu. Siyah beyaz bir rüya görüyor."
+  - "Balını çaldıkları için çok kızgın bir arı gibi görünüyor. Vızıldamıyor, hırlıyor."
+  - "Torunlarını her zaman görmekten mutlu olan bir dede gibi görünüyor, kahit o sadece bir kurum yığını olsa bile."
+  - "Görünüşe göre her şeye alerjisi var. Özellikle Pazartesi günlerine. Bir battaniyeye ve çaya ihtiyacı var."
+  - "Kesinlikle bir şeyler planlıyor. Muhtemelen şekeri tuzla değiştirmeyi."
+  - "Tek gözüyle bile her şeyi görür. Dişi, kurnaz 'ısırıklar' için tasarlanmıştır."
+  - "Varlığın anlamsızlığı üzerine düşünüyor. Kahveye değil, tatile ihtiyacı var."
+  - "Karşı konulmaz olduğunu biliyor. Herkese hafif bir üstünlükle bakıyor."
+  - "Nedenini unutacak kadar uzun süredir üzgün. Sadece üzgün, o kadar."
+  - "Onun sloganı – 'Gülümse!'. Eriyip gitse bile gülümseyecek."
+  - "Bu gezegendeki en güzel canavar olduğunu düşünüyor. Belki de haklıdır."
+  - "Aynı anda iki taraftan da komik buluyor. Burun-düdüğü sadece neşe katıyor."
+  - "Az önce bir örümcek gördü. Ya da kendi yansımasını. Ya da yarın işe gitmesi gerektiğini hatırladı."
+  - "Biri ona yuvarlak bir top hakkında bir fıkra anlattı ve o hala duramıyor."

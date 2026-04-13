@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 045ee76407384be38c23adb95c28b5fb, type: 3}
+  m_Name: 1_Rect_8x10
+  m_EditorClassIdentifier: 
+  LevelIndex: 1
+  GridSize: {x: 8, y: 10}
+  Snakes:
+  - BodyPositions:
+    - {x: 2, y: 1}
+    - {x: 2, y: 2}
+    - {x: 2, y: 3}
+    - {x: 2, y: 4}
+    - {x: 2, y: 5}
+    - {x: 3, y: 5}
+    - {x: 3, y: 6}
+    - {x: 2, y: 6}
+    - {x: 1, y: 6}
+    - {x: 1, y: 7}
+    - {x: 1, y: 8}
+    - {x: 2, y: 8}
+    Color: {r: 0.07413179, g: 0.88480103, b: 0.8655756, a: 1}
+  - BodyPositions:
+    - {x: 6, y: 0}
+    - {x: 5, y: 0}
+    - {x: 4, y: 0}
+    - {x: 3, y: 0}
+    - {x: 2, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 0, y: 2}
+    - {x: 0, y: 3}
+    - {x: 0, y: 4}
+    - {x: 1, y: 4}
+    - {x: 1, y: 5}
+    - {x: 0, y: 5}
+    Color: {r: 0.11185675, g: 0.8521694, b: 0.8153054, a: 1}
+  - BodyPositions:
+    - {x: 1, y: 3}
+    - {x: 1, y: 2}
+    - {x: 1, y: 1}
+    Color: {r: 0.23398614, g: 0.80597425, b: 0.03410884, a: 1}
+  - BodyPositions:
+    - {x: 0, y: 9}
+    - {x: 1, y: 9}
+    - {x: 2, y: 9}
+    - {x: 3, y: 9}
+    - {x: 4, y: 9}
+    - {x: 5, y: 9}
+    - {x: 6, y: 9}
+    - {x: 6, y: 8}
+    - {x: 6, y: 7}
+    - {x: 6, y: 6}
+    - {x: 6, y: 5}
+    - {x: 6, y: 4}
+    - {x: 6, y: 3}
+    Color: {r: 0.7011319, g: 0.944753, b: 0.085731976, a: 1}
+  - BodyPositions:
+    - {x: 0, y: 8}
+    - {x: 0, y: 7}
+    - {x: 0, y: 6}
+    Color: {r: 0.95477825, g: 0.0822114, b: 0.2245023, a: 1}
+  - BodyPositions:
+    - {x: 3, y: 8}
+    - {x: 4, y: 8}
+    - {x: 5, y: 8}
+    Color: {r: 0.29307383, g: 0.011040295, b: 0.8735152, a: 1}
+  - BodyPositions:
+    - {x: 2, y: 7}
+    - {x: 3, y: 7}
+    - {x: 4, y: 7}
+    Color: {r: 0.75957125, g: 0.046921782, b: 0.8345385, a: 1}
+  - BodyPositions:
+    - {x: 4, y: 6}
+    - {x: 5, y: 6}
+    - {x: 5, y: 7}
+    Color: {r: 0.98856944, g: 0.96429586, b: 0.17730519, a: 1}
+  - BodyPositions:
+    - {x: 3, y: 1}
+    - {x: 4, y: 1}
+    - {x: 5, y: 1}
+    - {x: 5, y: 2}
+    - {x: 5, y: 3}
+    - {x: 5, y: 4}
+    - {x: 5, y: 5}
+    Color: {r: 0.9251037, g: 0.0013044584, b: 0.39642578, a: 1}
+  - BodyPositions:
+    - {x: 4, y: 5}
+    - {x: 4, y: 4}
+    - {x: 4, y: 3}
+    - {x: 4, y: 2}
+    Color: {r: 0.83385843, g: 0.14850472, b: 0.926974, a: 1}
+  - BodyPositions:
+    - {x: 3, y: 2}
+    - {x: 3, y: 3}
+    - {x: 3, y: 4}
+    Color: {r: 0.09507683, g: 0.9981144, b: 0.41073513, a: 1}
+  - BodyPositions:
+    - {x: 7, y: 0}
+    - {x: 7, y: 1}
+    - {x: 6, y: 1}
+    - {x: 6, y: 2}
+    - {x: 7, y: 2}
+    - {x: 7, y: 3}
+    - {x: 7, y: 4}
+    - {x: 7, y: 5}
+    - {x: 7, y: 6}
+    - {x: 7, y: 7}
+    - {x: 7, y: 8}
+    - {x: 7, y: 9}
+    Color: {r: 0.18960345, g: 0.14548416, b: 0.95547134, a: 1}

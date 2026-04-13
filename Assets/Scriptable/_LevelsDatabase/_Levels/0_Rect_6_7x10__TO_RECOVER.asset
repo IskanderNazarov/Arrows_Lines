@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 045ee76407384be38c23adb95c28b5fb, type: 3}
+  m_Name: 0_Rect_6_7x10__TO_RECOVER
+  m_EditorClassIdentifier: 
+  LevelIndex: 0
+  GridSize: {x: 7, y: 10}
+  Snakes:
+  - BodyPositions:
+    - {x: 1, y: 1}
+    - {x: 2, y: 1}
+    - {x: 3, y: 1}
+    - {x: 4, y: 1}
+    - {x: 5, y: 1}
+    - {x: 5, y: 2}
+    - {x: 5, y: 3}
+    - {x: 5, y: 4}
+    - {x: 5, y: 5}
+    - {x: 5, y: 6}
+    - {x: 5, y: 7}
+    - {x: 5, y: 8}
+    Color: {r: 0.9005849, g: 0.35926843, b: 0.14154127, a: 1}
+  - BodyPositions:
+    - {x: 6, y: 0}
+    - {x: 5, y: 0}
+    - {x: 4, y: 0}
+    - {x: 3, y: 0}
+    - {x: 2, y: 0}
+    - {x: 1, y: 0}
+    - {x: 0, y: 0}
+    - {x: 0, y: 1}
+    - {x: 0, y: 2}
+    - {x: 1, y: 2}
+    - {x: 2, y: 2}
+    - {x: 3, y: 2}
+    Color: {r: 0.13175344, g: 0.1874825, b: 0.8775073, a: 1}
+  - BodyPositions:
+    - {x: 4, y: 2}
+    - {x: 4, y: 3}
+    - {x: 4, y: 4}
+    - {x: 4, y: 5}
+    - {x: 4, y: 6}
+    - {x: 4, y: 7}
+    - {x: 4, y: 8}
+    Color: {r: 0.06504854, g: 0.97806823, b: 0.08225142, a: 1}
+  - BodyPositions:
+    - {x: 6, y: 1}
+    - {x: 6, y: 2}
+    - {x: 6, y: 3}
+    - {x: 6, y: 4}
+    - {x: 6, y: 5}
+    - {x: 6, y: 6}
+    - {x: 6, y: 7}
+    - {x: 6, y: 8}
+    - {x: 6, y: 9}
+    - {x: 5, y: 9}
+    - {x: 4, y: 9}
+    - {x: 3, y: 9}
+    - {x: 3, y: 8}
+    - {x: 3, y: 7}
+    - {x: 3, y: 6}
+    - {x: 3, y: 5}
+    - {x: 3, y: 4}
+    - {x: 3, y: 3}
+    - {x: 2, y: 3}
+    - {x: 1, y: 3}
+    - {x: 0, y: 3}
+    - {x: 0, y: 4}
+    - {x: 0, y: 5}
+    - {x: 0, y: 6}
+    - {x: 0, y: 7}
+    - {x: 0, y: 8}
+    - {x: 0, y: 9}
+    Color: {r: 0.068967044, g: 0.8560343, b: 0.19631502, a: 1}
+  - BodyPositions:
+    - {x: 2, y: 4}
+    - {x: 1, y: 4}
+    - {x: 1, y: 5}
+    - {x: 1, y: 6}
+    - {x: 1, y: 7}
+    - {x: 1, y: 8}
+    - {x: 1, y: 9}
+    Color: {r: 0.06958468, g: 0.07946143, b: 0.81484604, a: 1}
+  - BodyPositions:
+    - {x: 2, y: 5}
+    - {x: 2, y: 6}
+    - {x: 2, y: 7}
+    - {x: 2, y: 8}
+    - {x: 2, y: 9}
+    Color: {r: 0.83596283, g: 0.65540797, b: 0.08230966, a: 1}

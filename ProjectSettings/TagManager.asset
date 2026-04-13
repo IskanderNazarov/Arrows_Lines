@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - WebFlower
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Box
+  - Border
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 117714257
+    locked: 0
+  - name: Layer_1
+    uniqueID: 2706076989
+    locked: 0
+  - name: Layer_2
+    uniqueID: 823219875
+    locked: 0
+  - name: Layer_3
+    uniqueID: 821192417
+    locked: 0
+  - name: Top
+    uniqueID: 841304145
+    locked: 0
+  - name: UI
+    uniqueID: 2892671555
+    locked: 0
+  m_RenderingLayers:
+  - Default
