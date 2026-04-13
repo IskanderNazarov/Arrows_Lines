@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23a4dc9048524b4fbc54908aa25702a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectSettings: {fileID: 11400000, guid: d6d8af493dae73d42944e3ab91042020, type: 2}
+  _projectSettings: {fileID: 11400000, guid: 297e2b30a5a66d34aa7aca7fbbbcd9a5, type: 2}
 --- !u!114 &-6261728102633213309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,10 +91,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameConfig: {fileID: 11400000, guid: 032d47be9c8525244ba77ea622ccba9f, type: 2}
   iapConfig: {fileID: 11400000, guid: de0265b1d934b2549b88b9c45640be9c, type: 2}
-  _allData:
-  - {fileID: 11400000, guid: 7cc9b5d240e9f444a9055c78e3c6e8ad, type: 2}
-  - {fileID: 11400000, guid: 84405266f23e1ee4aab952c5ec03463f, type: 2}
-  - {fileID: 11400000, guid: 82d84bac142df704aaee3ea652ba3647, type: 2}
-  _soundsContainer: {fileID: 11400000, guid: 9ed350b95a8e22e4b944c7ca07f7b698, type: 2}
+  localesSettings: {fileID: 11400000, guid: 9078a483407e2334f9ed783a960a14cc, type: 2}
   rewardPanelPrefab: {fileID: 4319319035959971223, guid: 20a2c945b6dc60447a65169050b986b5, type: 3}
   _levelsDatabase: {fileID: 11400000, guid: ee60a7201c8da8b45abe8a0313a6aac9, type: 2}

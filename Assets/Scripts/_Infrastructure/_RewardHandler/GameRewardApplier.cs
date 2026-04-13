@@ -14,18 +14,12 @@ using Zenject;
 namespace Services {
     public class GameRewardApplier : IRewardApplier {
 
-        private readonly CurrencyManager _currencyManager;
-
-        [Inject]
-        public GameRewardApplier(CurrencyManager currencyManager) {
-            _currencyManager = currencyManager;
-        }
 
         public void ApplyReward(Reward reward, string placement) {
             Debug.Log($"[GameRewardApplier] Applying reward from: {placement}");
 
             // 1. Базовые валюты (Core логика)
-            if (reward.Coins > 0) {
+            /*if (reward.Coins > 0) {
                 _currencyManager.AddValue(CurrencyType.Coins, reward.Coins);
                 Debug.Log($"Added {reward.Coins} Coins");
             }
@@ -33,7 +27,7 @@ namespace Services {
             if (reward.Gems > 0) {
                 _currencyManager.AddValue(CurrencyType.Gems, reward.Gems);
                 Debug.Log($"Added {reward.Gems} Gems");
-            }
+            }*/
 
             // 2. Кастомные предметы (Game логика)
             if (reward.Items != null) {

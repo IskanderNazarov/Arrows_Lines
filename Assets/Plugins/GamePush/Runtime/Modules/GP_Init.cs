@@ -34,6 +34,7 @@ namespace GamePush
 #if UNITY_EDITOR || !UNITY_WEBGL
             GP_Logger.SystemLog("SDK ready");
             CallOnSDKReady();
+            GP_Player.Load();
 #endif
         }
 

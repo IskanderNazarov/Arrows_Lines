@@ -31,7 +31,7 @@ namespace _UI._Market {
 
             var c = ColorUtility.ToHtmlStringRGBA(_gameConfig.marketValueCountColor);
             var f = $"<color=#{c}>{iapInfo.reward.Gems}</color>";
-            titleTMP.text = string.Format(Localizer.MarketPanelTitle, f);
+           // titleTMP.text = string.Format(Localizer.MarketPanelTitle, f);
         }
 
         public void ClickOnBuyButton() {

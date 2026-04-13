@@ -1,10 +1,9 @@
 ﻿using __CoreGameLib._Scripts._Services._Leaderboards;
-using __Gameplay;
 using _game._LevelsProviding;
-using _Zenject;
+using _UI;
+using _UI.Screens;
 using core.ads;
 using DG.Tweening;
-using Game.Boosters;
 using GamePush;
 using UnityEngine;
 using Zenject;
@@ -17,6 +16,7 @@ public class GameManager : MonoBehaviour {
     [Inject] private IAdsService _adsService;
     [Inject] private ILeaderboardService _leaderboardService;
     [Inject] private GameBoosterInventory _boosterInventory;
+    [Inject] private UIManager _uiManager;
 
 
     [Header("UI")] [SerializeField] private WinScreen _winScreen;
@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour {
         _signalBus.Subscribe<GameOverSignal>(ShowLoseDialog);
         _signalBus.Subscribe<ProcessAdForReviveSignal>(ProcessReviveAd);
         _signalBus.Subscribe<OnSnakeClickedSignal>(OnSnakeClicked);
+        
+        // start game flow
+        StartGameFlow();
     }
 
     private void OnDestroy() {
@@ -44,9 +47,26 @@ public class GameManager : MonoBehaviour {
         _signalBus.Unsubscribe<ProcessAdForReviveSignal>(ProcessReviveAd);
         _signalBus.Unsubscribe<OnSnakeClickedSignal>(OnSnakeClicked);
     }
+    
+    private void StartGameFlow() {
+        // check GDD condition: if no planet unlocked, go straight to gameplay
+        // for now, let's assume we go to MainScreen first
+        _uiManager.ShowScreen<MainScreen>();
+    }
 
     private void OnSnakeClicked() {
-        _adsService.ShowInterstitial(null);
+        _adsService.ShowInterstitial(AdPlacementType.AfterGameAction, null);
+    }
+    
+    public void OnPlayButtonClicked() {
+        // transition from main screen to gameplay
+        _uiManager.ShowScreen<TransitionScreen>(() => {
+            _gameplayController.ClearLevel();
+            _gameplayController.LoadLevel();
+            
+            // show gameplay UI after transition
+            _uiManager.ShowScreen<GameplayScreen>();
+        });
     }
 
     private void OnLevelCompleted() {
@@ -59,17 +79,16 @@ public class GameManager : MonoBehaviour {
         _playerProgressService.AddScore(snakesCount);
 
         Debug.Log("GM: Level Complete. Next level index: " + _playerProgressService.CurrentLevelIndex);
-        _winScreen.Show(snakesCount);
+        _uiManager.ShowScreen<WinScreen>();
     }
 
     // Этот метод теперь приватный и вызывается только по сигналу от шины
     private void LoadNextLevel() {
-        _winScreen.Hide(delegate {
+        // called from WinScreen when player clicks "Next"
+        _uiManager.ShowScreen<TransitionScreen>(() => {
             _gameplayController.ClearLevel();
             _gameplayController.LoadLevel();
-
-            GP_Analytics.Goal("level_started_i", _playerProgressService.CurrentLevelIndex);
-            GP_Analytics.Goal("level_started_s", _playerProgressService.CurrentLevelIndex.ToString());
+            _uiManager.ShowScreen<GameplayScreen>();
         });
     }
 
@@ -108,7 +127,6 @@ public class GameManager : MonoBehaviour {
     private void ProcessReviveAd() {
         // GameManager обращается к сервису рекламы
         _adsService.ShowRewarded(
-            placement: "revive_rewarded",
             onRewardGranted: () => {
                 Debug.Log("Реклама успешно просмотрена, возрождаем игрока!");
                 // Отправляем сигнал возрождения, который восстановит жизни в GameplayController

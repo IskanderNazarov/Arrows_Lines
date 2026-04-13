@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using _ExtensionsHelpers;
 using _game._LevelsProviding;
 using DG.Tweening;
@@ -15,9 +14,9 @@ namespace _UI {
         [SerializeField] private ParticleSystem _starsCollectParticles;
 
         private Color _textOriginColor;
-        [Inject]private ILevelProvider _levelProvider;
-        [Inject]private PlayerProgressService _progressService;
-        [Inject]private SoundHelper _soundHelper;
+        [Inject] private ILevelProvider _levelProvider;
+        [Inject] private PlayerProgressService _progressService;
+        [Inject] private SoundHelper _soundHelper;
 
         private void Start() {
             _textOriginColor = _congratsText.color;
@@ -27,14 +26,14 @@ namespace _UI {
             var dur = _starsCollectParticles.main.duration;
             _starsCollectParticles.gameObject.SetActive(true);
             _starsCollectParticles.Play();
-            
+
             yield return new WaitForSeconds(dur);
             _starsCollectParticles.gameObject.SetActive(false);
         }
 
         public IEnumerator AnimateCongratsText(Vector2 centerPos) {
             _soundHelper.PlayCongratsText();
-            _congratsText.text = Localizer.Congrats[_progressService.CurrentLevelIndex % Localizer.Congrats.Length];
+           // _congratsText.text = Localizer.Congrats[_progressService.CurrentLevelIndex % Localizer.Congrats.Length];
             var textAnimDur = 0.85f;
             _congratsText.gameObject.SetActive(true);
             _congratsText.color = _textOriginColor;

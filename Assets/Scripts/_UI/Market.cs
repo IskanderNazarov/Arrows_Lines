@@ -20,20 +20,17 @@ namespace Core._UI {
         private GameConfig _gameConfig;
         private IAP_Config _iapConfig;
         private PurchaseHandler _purchaseHandler;
-        private CurrencyManager _currencyManager;
         private bool _isInit;
 
         [Inject]
-        private void Construct(IPurchaser purchaser, GameConfig gameConfig, IAP_Config iapConfig,
-            CurrencyManager currencyManager, RewardHandler rewardHandler) {
+        private void Construct(IPurchaser purchaser, GameConfig gameConfig, IAP_Config iapConfig, RewardHandler rewardHandler) {
             _purchaser = purchaser;
             _gameConfig = gameConfig;
             _iapConfig = iapConfig;
-            _currencyManager = currencyManager;
             _rewardHandler = rewardHandler;
         }
 
-        public  void Show() {
+        public void Show() {
             gameObject.SetActive(true);
 
             if (!_isInit) {
@@ -51,9 +48,9 @@ namespace Core._UI {
                 _isInit = true;
             }
 
-            getRewardTitle.text = Localizer.Get;
+            // getRewardTitle.text = Localizer.Get;
+            // marketTitle.text = Localizer.Market;
             //rewardPanelTitle.text = string.Format(Localizer.GetFreeCoins, _gameConfig.gemsForRewarded);
-            marketTitle.text = Localizer.Market;
         }
 
         public void Hide() {

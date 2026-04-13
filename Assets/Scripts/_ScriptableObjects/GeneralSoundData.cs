@@ -1,4 +1,4 @@
-using Scriptable.SoundManaging;
+using Core._Services.SoundManagement;
 using UnityEngine;
 
 namespace SoundManaging {

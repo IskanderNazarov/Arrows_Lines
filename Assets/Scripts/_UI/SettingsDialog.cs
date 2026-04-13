@@ -28,25 +28,23 @@ namespace _UI {
         private RectTransform _rectTransform;
 
         private void Start() {
-            var isMusicOn = _soundManager.IsMusicOn();
-            var isSoundOn = _soundManager.IsSoundOn();
             soundBtn.onClick.AddListener(OnSoundClicked);
             musicBtn.onClick.AddListener(OnMusicClicked);
 
-            musicTMP.text = Localizer.musicTitle;
-            soundTMP.text = Localizer.soundTitle;
+            // musicTMP.text = Localizer.musicTitle;
+            // soundTMP.text = Localizer.soundTitle;
         }
 
         private void OnEnable() {
-            Debug.Log($"DS_ _soundManager.IsMusicOn(): {_soundManager.IsMusicOn()}");
-            Debug.Log($"DS_ _soundManager.IsSoundOn(): {_soundManager.IsSoundOn()}");
+            Debug.Log($"DS_ _soundManager.IsMusicOn(): {_soundManager.IsMusicOn}");
+            Debug.Log($"DS_ _soundManager.IsSoundOn(): {_soundManager.IsSoundOn}");
             musicGrayTop.anchoredPosition =
-                new Vector2(_soundManager.IsMusicOn() ? musicTopRightPos : musicTopLeftPos, musicGrayTop.anchoredPosition.y);
+                new Vector2(_soundManager.IsMusicOn ? musicTopRightPos : musicTopLeftPos, musicGrayTop.anchoredPosition.y);
             soundGrayTop.anchoredPosition =
-                new Vector2(_soundManager.IsSoundOn() ? soundTopRightPos : soundTopLeftPos, soundGrayTop.anchoredPosition.y);
+                new Vector2(_soundManager.IsSoundOn ? soundTopRightPos : soundTopLeftPos, soundGrayTop.anchoredPosition.y);
 
-            musicTop.color = new Color(1, 1, 1, _soundManager.IsMusicOn() ? 1 : 0);
-            soundTop.color = new Color(1, 1, 1, _soundManager.IsSoundOn() ? 1 : 0);
+            musicTop.color = new Color(1, 1, 1, _soundManager.IsMusicOn ? 1 : 0);
+            soundTop.color = new Color(1, 1, 1, _soundManager.IsSoundOn ? 1 : 0);
         }
 
         private void OnDestroy() {
@@ -55,13 +53,13 @@ namespace _UI {
         }
 
         private void OnMusicClicked() {
-            var isMusicOn = _soundManager.IsMusicOn();
+            var isMusicOn = _soundManager.IsMusicOn;
             _soundManager.SetMusicOn(!isMusicOn);
             MoveSettingsBtn(musicTop, musicGrayTop, isMusicOn ? musicTopLeftPos : musicTopRightPos, isMusicOn ? 0 : 1);
         }
 
         private void OnSoundClicked() {
-            var isSfxOn = _soundManager.IsSoundOn();
+            var isSfxOn = _soundManager.IsSoundOn;
             _soundManager.SetSFXOn(!isSfxOn);
             MoveSettingsBtn(soundTop, soundGrayTop, isSfxOn ? soundTopLeftPos : soundTopRightPos, isSfxOn ? 0 : 1);
         }
@@ -75,7 +73,7 @@ namespace _UI {
         }
 
         public void DeleteAll() {
-            _dataSaver.DeleteAll();
+            //_dataSaver.DeleteAll();
         }
 
         [SerializeField] private GameObject debugPanel;

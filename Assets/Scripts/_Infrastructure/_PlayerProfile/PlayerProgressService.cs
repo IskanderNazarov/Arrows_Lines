@@ -1,91 +1,62 @@
-﻿using System;
-using __CoreGameLib._Scripts._Services._Leaderboards;
+﻿// File: Assets/Game/Scripts/PlayerProgressService.cs
+
+using System;
+using System.Collections;
 using _Infrastructure;
+using Core._Services;
 using Core._Services._Saving;
-using UnityEngine;
-using Zenject;
 
-public class PlayerProgressService {
-    [Inject] private IDataSaver _dataSaver;
-    [Inject] private GameConfig _progressConfig;
-    [Inject] private ILeaderboardService _leaderboardService;
-
-    private PlayerSaveData _data;
-
-    public int CurrentLevelIndex => _data.CurrentLevelIndex;
-    public int Score => _data.CurrentScore;
+public class PlayerProgressService : SaveManager<PlayerSaveData> {
+    public int CurrentLevelIndex => Data.CurrentLevelIndex;
+    public int Score => Data.CurrentScore;
 
     public event Action<int> OnLevelChanged;
 
-    public void Initialize() {
-        string json = _dataSaver.GetDataString(GameKeys.PlayerData);
+    // constructor passes game specific key
+    public PlayerProgressService(IDataSaver dataSaver) 
+        : base(dataSaver, GameKeys.PlayerData) { }
 
-        Debug.Log($"Player json: {json}");
-        if (string.IsNullOrEmpty(json)) {
-            // 1. ИГРОК НОВЫЙ: Создаем профиль из конфига
-            CreateNewProfile();
-        }
-        else {
-            // 2. ИГРОК СТАРЫЙ: Загружаем профиль
-            _data = JsonUtility.FromJson<PlayerSaveData>(json);
-
-            // Здесь можно вызывать проверку миграций (см. ниже)
-            CheckMigrations();
-        }
-    }
-
-    public void DeleteAllData() {
-        _data = new PlayerSaveData();
-        SaveData();
+    public override IEnumerator Initialize() {
+        yield return base.Initialize();
+        CheckMigrations();
     }
 
     public void AddScore(int scoreDelta) {
-        _data.CurrentScore += scoreDelta;
-        SaveData();
-    }
-    
-    public int GetBoosterCount(int boosterId) {
-        if (_data == null || boosterId < 0 || boosterId >= _data.BoosterCounts.Count) return 0;
-        return _data.BoosterCounts[boosterId];
-    }
-
-    // Безопасное сохранение (автоматически расширяет список при необходимости)
-    public void SetBoosterCount(int boosterId, int count) {
-        if (_data == null) return;
-        
-        while (_data.BoosterCounts.Count <= boosterId) {
-            // Если игрок новый или добавился новый бустер в апдейте, 
-            // выдаем базовые 2 штуки (или 0, как захочешь)
-            _data.BoosterCounts.Add(2); 
-        }
-        
-        _data.BoosterCounts[boosterId] = count;
-        SaveData();
-    }
-
-    private void CreateNewProfile() {
-        _data = new PlayerSaveData();
-
-        // Заполняем данные значениями из RemoteConfig / ScriptableObject
-        //_data.CurrentLevelIndex = _progressConfig.StartLevelIndex;
-
-        SaveData(); // Сразу сохраняем созданный профиль на диск
+        Data.CurrentScore += scoreDelta;
+        MarkDirty(); // don't save to cloud immediately
     }
 
     public void CompleteLevel() {
-        _data.CurrentLevelIndex++;
-        SaveData();
-        OnLevelChanged?.Invoke(_data.CurrentLevelIndex);
+        Data.CurrentLevelIndex++;
+        MarkDirty();
+        OnLevelChanged?.Invoke(Data.CurrentLevelIndex);
+        SaveImmediate(); // save immediately on important milestone
     }
 
-    private void SaveData() {
-        string json = JsonUtility.ToJson(_data);
-        _dataSaver.SetData(GameKeys.PlayerData, json);
+    public int GetBoosterCount(int boosterId) {
+        if (boosterId < 0 || boosterId >= Data.BoosterCounts.Count) return 0;
+        return Data.BoosterCounts[boosterId];
+    }
+
+    public void SetBoosterCount(int boosterId, int count) {
+        while (Data.BoosterCounts.Count <= boosterId) {
+            Data.BoosterCounts.Add(2); // default count
+        }
+        
+        Data.BoosterCounts[boosterId] = count;
+        MarkDirty();
     }
 
     private void CheckMigrations() {
-        // Пример миграции: если мы обновили игру и добавили новую валюту (например, гемы),
-        // у старых игроков поле Gems будет равно 0, потому что в их старом JSON его не было.
-        // Здесь мы можем выдать им стартовые значения из конфига, если версия сохранения старая.
+        // handle versioning here
+        if (Data.Version < 1) {
+            // update logic
+        }
+    }
+
+    public void ResetProgress() {
+        Data = new PlayerSaveData();
+        MarkDirty();
+        SaveImmediate();
     }
 }

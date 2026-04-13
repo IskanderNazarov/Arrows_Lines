@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+    "com.nazzalex.corelib": "https://github.com/IskanderNazarov/CoreLib.git",
+    "com.playgama.bridge": "https://github.com/playgama/bridge-unity.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.ai.navigation": "2.0.9",
     "com.unity.build-report-inspector": "file:C:/Users/Alexander/Documents/Work/UnityTools/BuildReportInspector/com.unity.build-report-inspector",

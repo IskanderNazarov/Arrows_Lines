@@ -35,8 +35,8 @@ public class LoseDialog : Dialog {
         _restartButton.onClick.AddListener(OnRestartClicked);
         _watchAdButton.onClick.AddListener(OnWatchAdClicked);
         _watchAdButton.gameObject.SetActive(_reviveCount > 0);
-        _restartTMP.text = Localizer.Restart;
-        _continueTMP.text = Localizer.Continue;
+        /*_restartTMP.text = Localizer.Restart;
+        _continueTMP.text = Localizer.Continue;*/
             
         _heartTr.DOKill();
         _heartTr.localEulerAngles = new Vector3(0, 0, 0);

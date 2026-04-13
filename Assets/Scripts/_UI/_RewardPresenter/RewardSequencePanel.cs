@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using _Infrastructure;
+using _Services._Localization;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -36,24 +37,18 @@ namespace Core._RewardPresenter {
 
         public event Action OnScreenTapped;
 
-        private CommonResources _commonAssetsContainer;
         private Tween _chestIdleAnimation;
         private Vector3 _chestClosedOriginPos;
 
-
-        [Inject]
-        private void Constr(CommonResources commonAssetsContainer) {
-            _commonAssetsContainer = commonAssetsContainer;
-        }
 
         private void Awake() {
             tapCatcher.onClick.AddListener(() => OnScreenTapped?.Invoke());
             mainRoot.SetActive(false);
 
             _chestClosedOriginPos = openChestImage.transform.localPosition;
-            rewardTitleTMP.text =      Localizer.YourReward;
+            /*rewardTitleTMP.text =      Localizer.YourReward;
             extraRewardTitleTMP.text = Localizer.ExtraReward;
-            chestTitleTMP.text =       Localizer.ChestRewardTitle;
+            chestTitleTMP.text =       Localizer.ChestRewardTitle;*/
         }
 
         public void Initialize() {
@@ -130,8 +125,8 @@ namespace Core._RewardPresenter {
         }
 
         private void SetupCoinIcon(RewardItemView coinsItem, int amount) {
-            var coinIcon = _commonAssetsContainer.gemIcon;
-            coinsItem.Setup(coinIcon, $"+{amount}");
+            /*var coinIcon = _commonAssetsContainer.gemIcon;
+            coinsItem.Setup(coinIcon, $"+{amount}");*/
         }
 
         private IEnumerator ShowItemsAppearanceDefault(List<RewardItemView> itemsToShow, bool isFromChest) {

@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using _Zenject;
 using Core._Services;
+using Core._Services.SoundManagement;
 using Hellmade.Sound;
-using Scriptable.SoundManaging;
 using SoundManaging;
 using UnityEngine;
 using Zenject;
@@ -94,9 +93,8 @@ namespace _ExtensionsHelpers {
             var name = _clickMelody[i % _clickMelody.Count];
             var sound = _clickMelodyMap[name];
             i++;
-            sound.Pitch = pitch;
             sound.volume = 0.45f;
-            _soundManager.PlaySound(sound);
+            _soundManager.PlaySound(sound, pitch);
         }
 
         public void PlayBumpSound() {

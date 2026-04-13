@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using __CoreGameLib._Scripts._Services._Leaderboards;
 using _Infrastructure.Services._Leaderboards;
+using _Services._Localization;
 using _UI;
 using TMPro;
 using UnityEngine;
@@ -57,7 +58,7 @@ public class LeaderboardDialog : MonoBehaviour {
         SetupLocalization();
 
         if (!_leaderboardService.IsInitialized) {
-            ShowError(Localizer.LeaderboardServiceNotAvailable); //"Leaderboard service is not available."
+            //ShowError(Localizer.LeaderboardServiceNotAvailable); //"Leaderboard service is not available."
             return;
         }
 
@@ -96,7 +97,7 @@ public class LeaderboardDialog : MonoBehaviour {
             ShowLeaderboardView();
         } else {
             ShowAuthorizationView();
-            ShowError(Localizer.AuthFailedError); //"Authorization Failed. Please try again."
+            //ShowError(Localizer.AuthFailedError); //"Authorization Failed. Please try again."
         }
     }
 
@@ -154,7 +155,7 @@ public class LeaderboardDialog : MonoBehaviour {
 
     private void OnDataError(string errorMessage) {
         //Debug.LogError($"[LeaderboardDialog] Failed to load data: {errorMessage}");
-        ShowError(Localizer.LeaderboardLoadError);
+        //ShowError(Localizer.LeaderboardLoadError);
     }
 
     [SerializeField] private TextMeshProUGUI loginTitle;
@@ -162,13 +163,13 @@ public class LeaderboardDialog : MonoBehaviour {
 
 
     private void SetupLocalization() {
-        titleTMP.text = Localizer.LeaderboardTitle;
+        /*titleTMP.text = Localizer.LeaderboardTitle;
         loginTitle.text = Localizer.LoginBtnText;
         authInfo.text = Localizer.AuthInfo;
 
 
         instructionsTitleTMP.text = Localizer.LeaderboardInfoTitle;
-        instructionsTMP.text = Localizer.LeaderboardInfoStory;
+        instructionsTMP.text = Localizer.LeaderboardInfoStory;*/
     }
 
     /*private string ApplyHoneyColor(string text) {
