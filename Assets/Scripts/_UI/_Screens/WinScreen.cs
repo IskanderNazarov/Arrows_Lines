@@ -1,149 +1,180 @@
 using System;
 using System.Collections;
-using _ExtensionsHelpers;
+using _Services;
 using _UI;
-using _Zenject;
+using core.ads;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
-// File: Assets/Game/Scripts/UI/Screens/WinScreen.cs
-namespace _UI.Screens {
+namespace _Gameplay._UI {
     public class WinScreen : BaseScreen {
+        [Inject] private IAdsService _adsService;
+        [Inject] private PlayerProgressService _progressService;
+
+        [Header("Panels")]
+        [SerializeField] private GameObject _winScreen;
+        [SerializeField] private GameObject _unlockScreen;
+        [SerializeField] private GameObject _unlockPanel;
+
+        [Header("Progress Bar")]
+        [SerializeField] private ProgressBar _progressBar;
+
+        [Header("Star Containers")]
+        [SerializeField] private RectTransform _bucket_1;
+        [SerializeField] private RectTransform _bucket_2;
+        [SerializeField] private TextMeshProUGUI _bucketStarsText_1;
+        [SerializeField] private TextMeshProUGUI _bucketStarsText_2;
+
+        [Header("Bucket Positions")]
+        [SerializeField] private RectTransform _bucket_1_pos_1;
+        [SerializeField] private RectTransform _bucket_1_pos_2;
+        [SerializeField] private RectTransform _bucket_2_pos_2;
+
+        [Header("Coins UI")]
+        [SerializeField] private TextMeshProUGUI _coinsText;
+        [SerializeField] private Image _coinsImage;
+        [SerializeField] private Sprite _largeCoinsSprite;
+
+        [Header("Buttons")]
         [SerializeField] private Button _continueButton;
-        [SerializeField] private TextMeshProUGUI levelTitle_Next;
-        [SerializeField] private TextMeshProUGUI levelTitle_Completed;
-        [SerializeField] private TextMeshProUGUI levelNumber_Next;
-        [SerializeField] private TextMeshProUGUI levelNumber_Completed;
-        [SerializeField] private TextMeshProUGUI continueTMP;
-        [SerializeField] private TextMeshProUGUI scoreTMP;
-        [SerializeField] private RectTransform rocket;
-        [SerializeField] private RectTransform ufoTr;
-        [SerializeField] private RectTransform energyTr;
-        [SerializeField] private Image rocketImage;
-        [SerializeField] private Vector2 rocketStartPos;
-        [SerializeField] private float rocketIdleMoveShift;
-        [SerializeField] private float rocketMoveAwayShift;
-        [SerializeField] private Vector2 congratsTextStartPos;
+        [SerializeField] private Button _claimX2Button;
+        [SerializeField] private Button _claimX5CoinsButton;
+        [SerializeField] private Button _unlockContinueButton;
 
-        [Inject] private SignalBus _signalBus;
-        [Inject] private PlayerProgressService _playerProgress;
-        [Inject] private SoundHelper _soundHelper;
+        [Header("Unlock Assets")]
+        [SerializeField] private Image _unlockedPlanetImage;
+        [SerializeField] private TextMeshProUGUI _unlockedPlanetName;
 
-        private bool _isContinueClicked;
-        private RectTransform _congratsTMPTr;
-        private int _addedScore;
+        // logic completion event for GameManager
+        public event Action OnClosed;
+        public bool DidUnlock => _updateResult.DidUnlock;
 
+        private int _starsForLevel;
+        private int _coinsForLevel;
+        private bool _isX2StarsActive;
+        private ProgressUpdateResult _updateResult;
+        private Action _resumeProgressBarCallback;
 
-        public void Show(int score, Action onShowFinished = null) {
-            _addedScore = score;
-            _isContinueClicked = false;
-            energyTr.anchoredPosition = energyOriginPos;
-            rocket.DOKill();
-            rocket.anchoredPosition = rocketStartPos;
+        public void Setup(int stars, int coins) {
+            _starsForLevel = stars;
+            _coinsForLevel = coins;
+            _isX2StarsActive = false;
 
-            base.Show(onShowFinished);
-            // Подписываемся на стандартный клик Unity UI
+            _bucketStarsText_1.text = stars.ToString();
+            _bucketStarsText_2.text = stars.ToString();
+            _coinsText.text = coins.ToString();
+
+            _bucket_2.gameObject.SetActive(false);
+            _bucket_1.position = _bucket_1_pos_1.position;
+
+            UpdateButtonsVisibility();
+        }
+
+        public override void Show(Action onComplete = null) {
+            base.Show(onComplete);
+            _winScreen.SetActive(true);
+            _unlockScreen.SetActive(false);
+            _continueButton.interactable = true;
+
+            // subscribe to listeners in code
             _continueButton.onClick.AddListener(OnContinueClicked);
-
-            levelNumber_Completed.text = _playerProgress.CurrentLevelIndex.ToString();
-            levelNumber_Next.text = (_playerProgress.CurrentLevelIndex + 1).ToString();
-
-            /*levelTitle_Next.text = Localizer.LevelTitle;
-            levelTitle_Completed.text = Localizer.LevelTitle;
-            continueTMP.text = Localizer.Continue;*/
-
-            scoreTMP.text = score.ToString(); //todo make anima for score
+            _claimX2Button.onClick.AddListener(OnClaimX2StarsClicked);
+            _claimX5CoinsButton.onClick.AddListener(OnClaimX5CoinsClicked);
+            _unlockContinueButton.onClick.AddListener(OnUnlockContinueClicked);
         }
 
-        [SerializeField] private RectTransform ufoCap;
-        [SerializeField] private float ufoCapOpenAngle;
-        [SerializeField] private float energyJumpShift;
-
-        protected IEnumerator PlayShowAnim(Action onShowFinished = null) {
-            energyTr.gameObject.SetActive(true);
-            rocket.gameObject.SetActive(true);
-            rocketImage.color = new Color(1, 1, 1, 1);
-            //yield return base.PlayShowAnim(onShowFinished);
-
-            //todo ufo fly
-
-            yield return ufoCap.DORotate(Vector3.forward * ufoCapOpenAngle, 0.4f).From(Vector3.zero).SetEase(Ease.OutBack).WaitForCompletion();
-            var jumpPos = energyTr.anchoredPosition.y + /*Vector2.up * */energyJumpShift;
-            //yield return energyTr.DOJumpAnchorPos(jumpPos, 50, 1, 0.5f).WaitForCompletion();
-            _soundHelper.PlayEnergyFromUFO();
-            yield return energyTr.DOAnchorPosY(jumpPos, 0.75f).SetEase(Ease.OutBack).WaitForCompletion();
-            energyTr.DOAnchorPosY(energyTr.anchoredPosition.y + 15, 0.7f).SetDelay(0.1f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
-
-            /*_congratsTMPTr.gameObject.SetActive(true);
-            yield return _congratsTMPTr.DOAnchorPosY(_congratsTMPTr.anchoredPosition.y, 1).From(congratsTextStartPos).WaitForCompletion();*/
-            //MakeCurveTextAnim();
-
-
-            rocket.DOAnchorPosX(rocketStartPos.x + rocketIdleMoveShift, 1).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
-//        yield return new WaitUntil(() => _isContinueClicked);
-        }
-
-        /*
-        private void MakeCurveTextAnim() {
-            var c = _congratsTMPTr.GetComponent<CurvedText>();
-            DOTween.Punch(() => new Vector3(c.curve, c.curve), t => c.curve = t.x, Vector3.right, 2, 5);
-            DOVirtual.Float(4, 0, 2, delegate(float v) {
-                //c.curve = v;
-                c.SetCurve(v);
-            }).SetLoops(2, LoopType.Yoyo).SetEase(Ease.OutBack);
-        }
-        */
-
-        [SerializeField] private Vector2 energyOriginPos;
-
-        [FormerlySerializedAs("gameUI")] [SerializeField]
-        private GameplayScreen gameplayScreen;
-
-        protected IEnumerator HideAnim(Action onCompleted) {
-            var moveAwayDur = 0.5f;
-            energyTr.DOKill();
-
-            gameplayScreen.MoveEnergy(_addedScore, energyTr.position, moveAwayDur);
-            energyTr.anchoredPosition = energyOriginPos;
-            energyTr.gameObject.SetActive(false);
-
-
-            rocket.DOKill();
-
-            var sequence = DOTween.Sequence();
-            sequence.Append(rocket.DOAnchorPosX(rocketMoveAwayShift, moveAwayDur).SetEase(Ease.InSine));
-            sequence.Insert(moveAwayDur * 0.5f, rocketImage.DOFade(0, moveAwayDur * 0.5f).SetEase(Ease.Linear));
-            yield return sequence.Play().WaitForCompletion();
-
-            /*yield return base.HideAnim(delegate {
-                DOVirtual.DelayedCall(1.5f, delegate {
-                   // yield return new WaitForSeconds(1.5f);
-                    onCompleted?.Invoke();
-                });
-            });*/
-        }
-
-        public override void Hide(Action onCompleted = null) {
-            rocket.DOKill();
-            rocketImage.DOKill();
-            rocketImage.color = new Color(1, 1, 1, 1);
-            rocket.anchoredPosition = rocketStartPos;
-
-            base.Hide(onCompleted);
+        public override void Hide(Action onComplete = null) {
+            base.Hide(onComplete);
+            
+            // unsubscribe to prevent leaks
             _continueButton.onClick.RemoveListener(OnContinueClicked);
+            _claimX2Button.onClick.RemoveListener(OnClaimX2StarsClicked);
+            _claimX5CoinsButton.onClick.RemoveListener(OnClaimX5CoinsClicked);
+            _unlockContinueButton.onClick.RemoveListener(OnUnlockContinueClicked);
+        }
 
-            //ufoCap.eulerAngles = new Vector3(0, 0, 0);
-            ufoCap.DORotate(Vector3.zero, 0.5f);
+        private void UpdateButtonsVisibility() {
+            var anyUnlocked = _progressService.IsAnyPlanetUnlocked;
+            _claimX2Button.gameObject.SetActive(anyUnlocked);
+            _claimX5CoinsButton.gameObject.SetActive(true);
+        }
+
+        private void OnClaimX2StarsClicked() {
+            _adsService.ShowRewarded(
+                onRewardGranted: () => {
+                    _isX2StarsActive = true;
+                    _starsForLevel *= 2;
+                    _bucketStarsText_1.text = _starsForLevel.ToString();
+                    _bucketStarsText_2.text = _starsForLevel.ToString();
+
+                    _bucket_2.gameObject.SetActive(true);
+                    _bucket_1.DOMove(_bucket_1_pos_2.position, 0.5f).SetEase(Ease.OutBack);
+                    _bucket_2.DOMove(_bucket_2_pos_2.position, 0.5f).SetEase(Ease.OutBack).From(_bucket_1_pos_1.position);
+                },
+                onAdClosed: null
+            );
+        }
+
+        private void OnClaimX5CoinsClicked() {
+            _adsService.ShowRewarded(
+                onRewardGranted: () => {
+                    _coinsForLevel *= 5;
+                    _coinsText.text = _coinsForLevel.ToString();
+                    _coinsImage.sprite = _largeCoinsSprite;
+                    _coinsImage.transform.DOScale(1.2f, 0.3f).SetLoops(2, LoopType.Yoyo);
+                },
+                onAdClosed: null
+            );
         }
 
         private void OnContinueClicked() {
-            _isContinueClicked = true;
-            // Просто кричим в шину, что кнопка нажата
-            _signalBus.Fire<NextLevelClickedSignal>();
+            _continueButton.interactable = false;
+            _claimX2Button.interactable = false;
+
+            _updateResult = _progressService.AddStarsAndGetResult(_starsForLevel);
+            _progressService.AddCoins(_coinsForLevel);
+
+            StartCoroutine(ProcessWinFlow());
+        }
+
+        private IEnumerator ProcessWinFlow() {
+            // execute progress bar routine with unlock callback
+            yield return _progressBar.AnimateProgressRoutine(_updateResult, (resumeCallback) => {
+                _resumeProgressBarCallback = resumeCallback;
+                ShowUnlockScreen();
+            });
+
+            // if no unlock happened, complete screen immediately
+            if (!_updateResult.DidUnlock) {
+                OnClosed?.Invoke();
+            }
+        }
+
+        private void ShowUnlockScreen() {
+            _winScreen.SetActive(false);
+            _unlockScreen.SetActive(true);
+
+            var reward = _updateResult.UnlockedReward;
+                _unlockedPlanetImage.sprite = reward.Sprite;
+                _unlockedPlanetName.text = $"\"{reward.DisplayName}\"";
+
+            _unlockPanel.SetActive(true);
+            _unlockPanel.transform.localScale = Vector3.zero;
+            _unlockPanel.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack);
+        }
+
+        private void OnUnlockContinueClicked() {
+            _unlockScreen.SetActive(false);
+            _winScreen.SetActive(true);
+
+            // resume rocket animation
+            _resumeProgressBarCallback?.Invoke();
+
+            // notify manager after a delay to allow rocket to return
+            DOVirtual.DelayedCall(1.5f, () => OnClosed?.Invoke());
         }
     }
 }
